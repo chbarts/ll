@@ -1,0 +1,464 @@
+	.file	"ll.c"
+	.intel_syntax noprefix
+# GNU C (Ubuntu 4.3.2-1ubuntu12) version 4.3.2 (x86_64-linux-gnu)
+#	compiled by GNU C version 4.3.2, GMP version 4.2.2, MPFR version 2.3.2.
+# GGC heuristics: --param ggc-min-expand=97 --param ggc-min-heapsize=126954
+# options passed:  ll.c -D_FORTIFY_SOURCE=2 -masm=intel -mtune=generic
+# -auxbase-strip ll-no.vasm -fverbose-asm -fstack-protector
+# options enabled:  -falign-loops -fargument-alias
+# -fasynchronous-unwind-tables -fauto-inc-dec -fbranch-count-reg -fcommon
+# -fearly-inlining -feliminate-unused-debug-types -ffunction-cse -fgcse-lm
+# -fident -fivopts -fkeep-static-consts -fleading-underscore -fmath-errno
+# -fmerge-debug-strings -fmove-loop-invariants -fpeephole
+# -freg-struct-return -fsched-interblock -fsched-spec
+# -fsched-stalled-insns-dep -fsigned-zeros -fsplit-ivs-in-unroller
+# -fstack-protector -ftoplevel-reorder -ftrapping-math -ftree-cselim
+# -ftree-loop-im -ftree-loop-ivcanon -ftree-loop-optimize
+# -ftree-parallelize-loops= -ftree-reassoc -ftree-scev-cprop
+# -ftree-vect-loop-version -funwind-tables -fvect-cost-model -fverbose-asm
+# -fzero-initialized-in-bss -m128bit-long-double -m64 -m80387
+# -maccumulate-outgoing-args -malign-stringops -mfancy-math-387
+# -mfp-ret-in-387 -mfused-madd -mglibc -mieee-fp -mmmx -mno-sse4
+# -mpush-args -mred-zone -msse -msse2 -mtls-direct-seg-refs
+
+# Compiler executable checksum: cd16075ebb6b42bb54bf2dfdb85f5098
+
+	.text
+.globl get_next
+	.type	get_next, @function
+get_next:
+.LFB2:
+	push	rbp	#
+.LCFI0:
+	mov	rbp, rsp	#,
+.LCFI1:
+	mov	QWORD PTR [rbp-8], rdi	# node, node
+	cmp	QWORD PTR [rbp-8], 0	# node,
+	jne	.L2	#,
+	mov	QWORD PTR [rbp-16], 0	# D.2083,
+	jmp	.L3	#
+.L2:
+	mov	rax, QWORD PTR [rbp-8]	# tmp61, node
+	mov	rax, QWORD PTR [rax+16]	# D.2084, <variable>.nxt
+	test	rax, rax	# D.2084
+	jne	.L4	#,
+	mov	QWORD PTR [rbp-16], 0	# D.2083,
+	jmp	.L3	#
+.L4:
+	mov	rax, QWORD PTR [rbp-8]	# tmp62, node
+	mov	rax, QWORD PTR [rax+16]	#, <variable>.nxt
+	mov	QWORD PTR [rbp-16], rax	# D.2083,
+.L3:
+	mov	rax, QWORD PTR [rbp-16]	# <result>, D.2083
+	leave
+	ret
+.LFE2:
+	.size	get_next, .-get_next
+.globl get_tag
+	.type	get_tag, @function
+get_tag:
+.LFB3:
+	push	rbp	#
+.LCFI2:
+	mov	rbp, rsp	#,
+.LCFI3:
+	mov	QWORD PTR [rbp-8], rdi	# node, node
+	cmp	QWORD PTR [rbp-8], 0	# node,
+	jne	.L7	#,
+	mov	DWORD PTR [rbp-12], -1	# D.2093,
+	jmp	.L8	#
+.L7:
+	mov	rax, QWORD PTR [rbp-8]	# tmp60, node
+	mov	eax, DWORD PTR [rax]	#, <variable>.tag
+	mov	DWORD PTR [rbp-12], eax	# D.2093,
+.L8:
+	mov	eax, DWORD PTR [rbp-12]	# <result>, D.2093
+	leave
+	ret
+.LFE3:
+	.size	get_tag, .-get_tag
+.globl get_data
+	.type	get_data, @function
+get_data:
+.LFB4:
+	push	rbp	#
+.LCFI4:
+	mov	rbp, rsp	#,
+.LCFI5:
+	mov	QWORD PTR [rbp-8], rdi	# node, node
+	cmp	QWORD PTR [rbp-8], 0	# node,
+	jne	.L11	#,
+	mov	QWORD PTR [rbp-16], 0	# D.2100,
+	jmp	.L12	#
+.L11:
+	mov	rax, QWORD PTR [rbp-8]	# tmp60, node
+	mov	rax, QWORD PTR [rax+8]	#, <variable>.data
+	mov	QWORD PTR [rbp-16], rax	# D.2100,
+.L12:
+	mov	rax, QWORD PTR [rbp-16]	# <result>, D.2100
+	leave
+	ret
+.LFE4:
+	.size	get_data, .-get_data
+.globl get_end
+	.type	get_end, @function
+get_end:
+.LFB5:
+	push	rbp	#
+.LCFI6:
+	mov	rbp, rsp	#,
+.LCFI7:
+	sub	rsp, 16	#,
+.LCFI8:
+	mov	QWORD PTR [rbp-8], rdi	# node, node
+	cmp	QWORD PTR [rbp-8], 0	# node,
+	jne	.L15	#,
+	mov	QWORD PTR [rbp-16], 0	# D.2110,
+	jmp	.L16	#
+.L15:
+	mov	rax, QWORD PTR [rbp-8]	# tmp63, node
+	mov	rax, QWORD PTR [rax+16]	# D.2111, <variable>.nxt
+	test	rax, rax	# D.2111
+	jne	.L18	#,
+	mov	rax, QWORD PTR [rbp-8]	#, node
+	mov	QWORD PTR [rbp-16], rax	# D.2110,
+	jmp	.L16	#
+.L19:
+	mov	rdi, QWORD PTR [rbp-8]	# tmp64, node
+	call	get_next	#
+	mov	QWORD PTR [rbp-8], rax	# node, node.0
+.L18:
+	mov	rax, QWORD PTR [rbp-8]	# tmp65, node
+	mov	rax, QWORD PTR [rax+16]	# D.2113, <variable>.nxt
+	test	rax, rax	# D.2113
+	jne	.L19	#,
+	mov	rax, QWORD PTR [rbp-8]	#, node
+	mov	QWORD PTR [rbp-16], rax	# D.2110,
+.L16:
+	mov	rax, QWORD PTR [rbp-16]	# <result>, D.2110
+	leave
+	ret
+.LFE5:
+	.size	get_end, .-get_end
+.globl append_node
+	.type	append_node, @function
+append_node:
+.LFB6:
+	push	rbp	#
+.LCFI9:
+	mov	rbp, rsp	#,
+.LCFI10:
+	sub	rsp, 24	#,
+.LCFI11:
+	mov	QWORD PTR [rbp-8], rdi	# cur, cur
+	mov	QWORD PTR [rbp-16], rsi	# new, new
+	cmp	QWORD PTR [rbp-8], 0	# cur,
+	je	.L22	#,
+	cmp	QWORD PTR [rbp-16], 0	# new,
+	jne	.L23	#,
+.L22:
+	mov	QWORD PTR [rbp-24], 0	# D.2125,
+	jmp	.L24	#
+.L23:
+	mov	rax, QWORD PTR [rbp-8]	# tmp62, cur
+	mov	rax, QWORD PTR [rax+16]	# D.2126, <variable>.nxt
+	test	rax, rax	# D.2126
+	jne	.L25	#,
+	mov	rdx, QWORD PTR [rbp-8]	# tmp63, cur
+	mov	rax, QWORD PTR [rbp-16]	# tmp64, new
+	mov	QWORD PTR [rdx+16], rax	# <variable>.nxt, tmp64
+	mov	rax, QWORD PTR [rbp-8]	#, cur
+	mov	QWORD PTR [rbp-24], rax	# D.2125,
+	jmp	.L24	#
+.L25:
+	mov	rdi, QWORD PTR [rbp-8]	# tmp65, cur
+	call	get_end	#
+	mov	QWORD PTR [rbp-8], rax	# cur, cur.1
+	mov	rdx, QWORD PTR [rbp-8]	# tmp66, cur
+	mov	rax, QWORD PTR [rbp-16]	# tmp67, new
+	mov	QWORD PTR [rdx+16], rax	# <variable>.nxt, tmp67
+	mov	rax, QWORD PTR [rbp-8]	#, cur
+	mov	QWORD PTR [rbp-24], rax	# D.2125,
+.L24:
+	mov	rax, QWORD PTR [rbp-24]	# <result>, D.2125
+	leave
+	ret
+.LFE6:
+	.size	append_node, .-append_node
+.globl prepend_node
+	.type	prepend_node, @function
+prepend_node:
+.LFB7:
+	push	rbp	#
+.LCFI12:
+	mov	rbp, rsp	#,
+.LCFI13:
+	mov	QWORD PTR [rbp-8], rdi	# cur, cur
+	mov	QWORD PTR [rbp-16], rsi	# new, new
+	cmp	QWORD PTR [rbp-8], 0	# cur,
+	je	.L28	#,
+	cmp	QWORD PTR [rbp-16], 0	# new,
+	jne	.L29	#,
+.L28:
+	mov	QWORD PTR [rbp-24], 0	# D.2138,
+	jmp	.L30	#
+.L29:
+	mov	rdx, QWORD PTR [rbp-16]	# tmp60, new
+	mov	rax, QWORD PTR [rbp-8]	# tmp61, cur
+	mov	QWORD PTR [rdx+16], rax	# <variable>.nxt, tmp61
+	mov	rax, QWORD PTR [rbp-16]	#, new
+	mov	QWORD PTR [rbp-24], rax	# D.2138,
+.L30:
+	mov	rax, QWORD PTR [rbp-24]	# <result>, D.2138
+	leave
+	ret
+.LFE7:
+	.size	prepend_node, .-prepend_node
+.globl new_node
+	.type	new_node, @function
+new_node:
+.LFB8:
+	push	rbp	#
+.LCFI14:
+	mov	rbp, rsp	#,
+.LCFI15:
+	sub	rsp, 48	#,
+.LCFI16:
+	mov	DWORD PTR [rbp-20], edi	# tag, tag
+	mov	QWORD PTR [rbp-32], rsi	# data, data
+	mov	QWORD PTR [rbp-40], rdx	# next, next
+	mov	edi, 24	#,
+	call	malloc	#
+	mov	QWORD PTR [rbp-8], rax	# new, D.2147
+	cmp	QWORD PTR [rbp-8], 0	# new,
+	jne	.L33	#,
+	mov	QWORD PTR [rbp-48], 0	# D.2148,
+	jmp	.L34	#
+.L33:
+	mov	rdx, QWORD PTR [rbp-8]	# tmp62, new
+	mov	eax, DWORD PTR [rbp-20]	# tmp63, tag
+	mov	DWORD PTR [rdx], eax	# <variable>.tag, tmp63
+	mov	rdx, QWORD PTR [rbp-8]	# tmp64, new
+	mov	rax, QWORD PTR [rbp-32]	# tmp65, data
+	mov	QWORD PTR [rdx+8], rax	# <variable>.data, tmp65
+	mov	rdx, QWORD PTR [rbp-8]	# tmp66, new
+	mov	rax, QWORD PTR [rbp-40]	# tmp67, next
+	mov	QWORD PTR [rdx+16], rax	# <variable>.nxt, tmp67
+	mov	rax, QWORD PTR [rbp-8]	#, new
+	mov	QWORD PTR [rbp-48], rax	# D.2148,
+.L34:
+	mov	rax, QWORD PTR [rbp-48]	# <result>, D.2148
+	leave
+	ret
+.LFE8:
+	.size	new_node, .-new_node
+.globl free_all_nodes
+	.type	free_all_nodes, @function
+free_all_nodes:
+.LFB9:
+	push	rbp	#
+.LCFI17:
+	mov	rbp, rsp	#,
+.LCFI18:
+	sub	rsp, 32	#,
+.LCFI19:
+	mov	QWORD PTR [rbp-24], rdi	# beg, beg
+	mov	DWORD PTR [rbp-28], esi	# d, d
+	cmp	QWORD PTR [rbp-24], 0	# beg,
+	je	.L41	#,
+	jmp	.L38	#
+.L40:
+	mov	rax, QWORD PTR [rbp-24]	# tmp59, beg
+	mov	rax, QWORD PTR [rax+16]	# tmp60, <variable>.nxt
+	mov	QWORD PTR [rbp-8], rax	# tmp, tmp60
+	cmp	DWORD PTR [rbp-28], 0	# d,
+	je	.L39	#,
+	mov	rax, QWORD PTR [rbp-24]	# tmp61, beg
+	mov	rdi, QWORD PTR [rax+8]	# D.2160, <variable>.data
+	call	free	#
+.L39:
+	mov	rdi, QWORD PTR [rbp-24]	# tmp62, beg
+	call	free	#
+	mov	rax, QWORD PTR [rbp-8]	# tmp63, tmp
+	mov	QWORD PTR [rbp-24], rax	# beg, tmp63
+.L38:
+	cmp	QWORD PTR [rbp-24], 0	# beg,
+	jne	.L40	#,
+.L41:
+	leave
+	ret
+.LFE9:
+	.size	free_all_nodes, .-free_all_nodes
+	.section	.eh_frame,"a",@progbits
+.Lframe1:
+	.long	.LECIE1-.LSCIE1
+.LSCIE1:
+	.long	0x0
+	.byte	0x1
+	.string	"zR"
+	.uleb128 0x1
+	.sleb128 -8
+	.byte	0x10
+	.uleb128 0x1
+	.byte	0x3
+	.byte	0xc
+	.uleb128 0x7
+	.uleb128 0x8
+	.byte	0x90
+	.uleb128 0x1
+	.align 8
+.LECIE1:
+.LSFDE1:
+	.long	.LEFDE1-.LASFDE1
+.LASFDE1:
+	.long	.LASFDE1-.Lframe1
+	.long	.LFB2
+	.long	.LFE2-.LFB2
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI0-.LFB2
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI1-.LCFI0
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE1:
+.LSFDE3:
+	.long	.LEFDE3-.LASFDE3
+.LASFDE3:
+	.long	.LASFDE3-.Lframe1
+	.long	.LFB3
+	.long	.LFE3-.LFB3
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI2-.LFB3
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI3-.LCFI2
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE3:
+.LSFDE5:
+	.long	.LEFDE5-.LASFDE5
+.LASFDE5:
+	.long	.LASFDE5-.Lframe1
+	.long	.LFB4
+	.long	.LFE4-.LFB4
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI4-.LFB4
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI5-.LCFI4
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE5:
+.LSFDE7:
+	.long	.LEFDE7-.LASFDE7
+.LASFDE7:
+	.long	.LASFDE7-.Lframe1
+	.long	.LFB5
+	.long	.LFE5-.LFB5
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI6-.LFB5
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI7-.LCFI6
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE7:
+.LSFDE9:
+	.long	.LEFDE9-.LASFDE9
+.LASFDE9:
+	.long	.LASFDE9-.Lframe1
+	.long	.LFB6
+	.long	.LFE6-.LFB6
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI9-.LFB6
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI10-.LCFI9
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE9:
+.LSFDE11:
+	.long	.LEFDE11-.LASFDE11
+.LASFDE11:
+	.long	.LASFDE11-.Lframe1
+	.long	.LFB7
+	.long	.LFE7-.LFB7
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI12-.LFB7
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI13-.LCFI12
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE11:
+.LSFDE13:
+	.long	.LEFDE13-.LASFDE13
+.LASFDE13:
+	.long	.LASFDE13-.Lframe1
+	.long	.LFB8
+	.long	.LFE8-.LFB8
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI14-.LFB8
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI15-.LCFI14
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE13:
+.LSFDE15:
+	.long	.LEFDE15-.LASFDE15
+.LASFDE15:
+	.long	.LASFDE15-.Lframe1
+	.long	.LFB9
+	.long	.LFE9-.LFB9
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI17-.LFB9
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI18-.LCFI17
+	.byte	0xd
+	.uleb128 0x6
+	.align 8
+.LEFDE15:
+	.ident	"GCC: (Ubuntu 4.3.2-1ubuntu12) 4.3.2"
+	.section	.note.GNU-stack,"",@progbits

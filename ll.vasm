@@ -1,0 +1,355 @@
+	.file	"ll.c"
+	.intel_syntax noprefix
+# GNU C (Ubuntu 4.3.2-1ubuntu12) version 4.3.2 (x86_64-linux-gnu)
+#	compiled by GNU C version 4.3.2, GMP version 4.2.2, MPFR version 2.3.2.
+# GGC heuristics: --param ggc-min-expand=97 --param ggc-min-heapsize=126954
+# options passed:  ll.c -D_FORTIFY_SOURCE=2 -masm=intel -mtune=generic
+# -auxbase-strip ll.vasm -O3 -fverbose-asm -fstack-protector
+# options enabled:  -falign-loops -fargument-alias
+# -fasynchronous-unwind-tables -fauto-inc-dec -fbranch-count-reg
+# -fcaller-saves -fcommon -fcprop-registers -fcrossjumping
+# -fcse-follow-jumps -fdefer-pop -fdelete-null-pointer-checks
+# -fearly-inlining -feliminate-unused-debug-types -fexpensive-optimizations
+# -fforward-propagate -ffunction-cse -fgcse -fgcse-after-reload -fgcse-lm
+# -fguess-branch-probability -fident -fif-conversion -fif-conversion2
+# -finline-functions -finline-functions-called-once
+# -finline-small-functions -fipa-pure-const -fipa-reference -fivopts
+# -fkeep-static-consts -fleading-underscore -fmath-errno -fmerge-constants
+# -fmerge-debug-strings -fmove-loop-invariants -fomit-frame-pointer
+# -foptimize-register-move -foptimize-sibling-calls -fpeephole -fpeephole2
+# -fpredictive-commoning -freg-struct-return -fregmove -freorder-blocks
+# -freorder-functions -frerun-cse-after-loop -fsched-interblock
+# -fsched-spec -fsched-stalled-insns-dep -fschedule-insns2 -fsigned-zeros
+# -fsplit-ivs-in-unroller -fsplit-wide-types -fstack-protector
+# -fstrict-aliasing -fstrict-overflow -fthread-jumps -ftoplevel-reorder
+# -ftrapping-math -ftree-ccp -ftree-ch -ftree-copy-prop -ftree-copyrename
+# -ftree-cselim -ftree-dce -ftree-dominator-opts -ftree-dse -ftree-fre
+# -ftree-loop-im -ftree-loop-ivcanon -ftree-loop-optimize
+# -ftree-parallelize-loops= -ftree-pre -ftree-reassoc -ftree-salias
+# -ftree-scev-cprop -ftree-sink -ftree-sra -ftree-store-ccp -ftree-ter
+# -ftree-vect-loop-version -ftree-vectorize -ftree-vrp -funit-at-a-time
+# -funswitch-loops -funwind-tables -fvect-cost-model -fverbose-asm
+# -fzero-initialized-in-bss -m128bit-long-double -m64 -m80387
+# -maccumulate-outgoing-args -malign-stringops -mfancy-math-387
+# -mfp-ret-in-387 -mfused-madd -mglibc -mieee-fp -mmmx -mno-sse4
+# -mpush-args -mred-zone -msse -msse2 -mtls-direct-seg-refs
+
+# Compiler executable checksum: cd16075ebb6b42bb54bf2dfdb85f5098
+
+	.text
+	.p2align 4,,15
+.globl get_next
+	.type	get_next, @function
+get_next:
+.LFB14:
+	xor	eax, eax	# D.2263
+	test	rdi, rdi	# node
+	jne	.L6	#,
+	rep
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L6:
+	mov	rax, QWORD PTR [rdi+16]	# D.2263, <variable>.nxt
+	ret
+.LFE14:
+	.size	get_next, .-get_next
+	.p2align 4,,15
+.globl get_tag
+	.type	get_tag, @function
+get_tag:
+.LFB15:
+	test	rdi, rdi	# node
+	mov	eax, -1	# D.2268,
+	je	.L9	#,
+	mov	eax, DWORD PTR [rdi]	# D.2268, <variable>.tag
+.L9:
+	rep
+	ret
+.LFE15:
+	.size	get_tag, .-get_tag
+	.p2align 4,,15
+.globl get_data
+	.type	get_data, @function
+get_data:
+.LFB16:
+	xor	eax, eax	# D.2272
+	test	rdi, rdi	# node
+	je	.L13	#,
+	mov	rax, QWORD PTR [rdi+8]	# D.2272, <variable>.data
+.L13:
+	rep
+	ret
+.LFE16:
+	.size	get_data, .-get_data
+	.p2align 4,,15
+.globl get_end
+	.type	get_end, @function
+get_end:
+.LFB17:
+	test	rdi, rdi	# node
+	mov	rax, rdi	# node, node
+	jne	.L20	#,
+	jmp	.L16	#
+	.p2align 4,,10
+	.p2align 3
+.L21:
+	mov	rax, rdi	# node, node.52
+.L20:
+	mov	rdi, QWORD PTR [rax+16]	# node.53, <variable>.nxt
+	test	rdi, rdi	# node.53
+	jne	.L21	#,
+.L16:
+	rep
+	ret
+.LFE17:
+	.size	get_end, .-get_end
+	.p2align 4,,15
+.globl append_node
+	.type	append_node, @function
+append_node:
+.LFB18:
+	test	rdi, rdi	# cur
+	je	.L30	#,
+	test	rsi, rsi	# new
+	je	.L30	#,
+	mov	rax, QWORD PTR [rdi+16]	# cur.66, <variable>.nxt
+	test	rax, rax	# cur.66
+	je	.L27	#,
+.L26:
+	mov	rdi, rax	# cur, cur.66
+	mov	rax, QWORD PTR [rax+16]	# cur.67, <variable>.nxt
+	test	rax, rax	# cur.67
+	jne	.L26	#,
+.L27:
+	mov	QWORD PTR [rdi+16], rsi	# <variable>.nxt, new
+	mov	rax, rdi	#, cur
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L30:
+	xor	edi, edi	# cur
+	mov	rax, rdi	#, cur
+	ret
+.LFE18:
+	.size	append_node, .-append_node
+	.p2align 4,,15
+.globl prepend_node
+	.type	prepend_node, @function
+prepend_node:
+.LFB19:
+	test	rdi, rdi	# cur
+	je	.L36	#,
+	test	rsi, rsi	# new
+	je	.L36	#,
+	mov	QWORD PTR [rsi+16], rdi	# <variable>.nxt, cur
+	mov	rax, rsi	#, new
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L36:
+	xor	esi, esi	# new
+	mov	rax, rsi	#, new
+	.p2align 4,,2
+	.p2align 3
+	ret
+.LFE19:
+	.size	prepend_node, .-prepend_node
+	.p2align 4,,15
+.globl free_all_nodes
+	.type	free_all_nodes, @function
+free_all_nodes:
+.LFB21:
+	push	rbp	#
+.LCFI0:
+	mov	rbp, rdi	# beg, beg
+	push	rbx	#
+.LCFI1:
+	sub	rsp, 8	#,
+.LCFI2:
+	test	rdi, rdi	# beg
+	je	.L41	#,
+	test	esi, esi	# d
+	jne	.L43	#,
+	.p2align 4,,10
+	.p2align 3
+.L42:
+	mov	rbx, QWORD PTR [rbp+16]	# tmp.98, <variable>.nxt
+	mov	rdi, rbp	#, beg
+	call	free	#
+	test	rbx, rbx	# beg
+	mov	rbp, rbx	# beg, tmp.98
+	jne	.L42	#,
+.L41:
+	add	rsp, 8	#,
+	pop	rbx	#
+	pop	rbp	#
+	ret
+	.p2align 4,,10
+	.p2align 3
+.L43:
+	mov	rdi, QWORD PTR [rbp+8]	# <variable>.data, <variable>.data
+	mov	rbx, QWORD PTR [rbp+16]	# tmp, <variable>.nxt
+	call	free	#
+	mov	rdi, rbp	#, beg
+	mov	rbp, rbx	# beg, tmp
+	call	free	#
+	test	rbx, rbx	# beg
+	jne	.L43	#,
+	.p2align 4,,2
+	.p2align 3
+	jmp	.L41	#
+.LFE21:
+	.size	free_all_nodes, .-free_all_nodes
+	.p2align 4,,15
+.globl new_node
+	.type	new_node, @function
+new_node:
+.LFB20:
+	mov	QWORD PTR [rsp-24], rbx	#,
+.LCFI3:
+	mov	QWORD PTR [rsp-16], rbp	#,
+.LCFI4:
+	mov	ebx, edi	# tag, tag
+	mov	QWORD PTR [rsp-8], r12	#,
+.LCFI5:
+	mov	edi, 24	#,
+	sub	rsp, 24	#,
+.LCFI6:
+	mov	rbp, rsi	# data, data
+	mov	r12, rdx	# next, next
+	call	malloc	#
+	test	rax, rax	# tmp64
+	je	.L47	#,
+	mov	DWORD PTR [rax], ebx	# <variable>.tag, tag
+	mov	QWORD PTR [rax+8], rbp	# <variable>.data, data
+	mov	QWORD PTR [rax+16], r12	# <variable>.nxt, next
+.L47:
+	mov	rbx, QWORD PTR [rsp]	#,
+	mov	rbp, QWORD PTR [rsp+8]	#,
+	mov	r12, QWORD PTR [rsp+16]	#,
+	add	rsp, 24	#,
+	ret
+.LFE20:
+	.size	new_node, .-new_node
+	.section	.eh_frame,"a",@progbits
+.Lframe1:
+	.long	.LECIE1-.LSCIE1
+.LSCIE1:
+	.long	0x0
+	.byte	0x1
+	.string	"zR"
+	.uleb128 0x1
+	.sleb128 -8
+	.byte	0x10
+	.uleb128 0x1
+	.byte	0x3
+	.byte	0xc
+	.uleb128 0x7
+	.uleb128 0x8
+	.byte	0x90
+	.uleb128 0x1
+	.align 8
+.LECIE1:
+.LSFDE1:
+	.long	.LEFDE1-.LASFDE1
+.LASFDE1:
+	.long	.LASFDE1-.Lframe1
+	.long	.LFB14
+	.long	.LFE14-.LFB14
+	.uleb128 0x0
+	.align 8
+.LEFDE1:
+.LSFDE3:
+	.long	.LEFDE3-.LASFDE3
+.LASFDE3:
+	.long	.LASFDE3-.Lframe1
+	.long	.LFB15
+	.long	.LFE15-.LFB15
+	.uleb128 0x0
+	.align 8
+.LEFDE3:
+.LSFDE5:
+	.long	.LEFDE5-.LASFDE5
+.LASFDE5:
+	.long	.LASFDE5-.Lframe1
+	.long	.LFB16
+	.long	.LFE16-.LFB16
+	.uleb128 0x0
+	.align 8
+.LEFDE5:
+.LSFDE7:
+	.long	.LEFDE7-.LASFDE7
+.LASFDE7:
+	.long	.LASFDE7-.Lframe1
+	.long	.LFB17
+	.long	.LFE17-.LFB17
+	.uleb128 0x0
+	.align 8
+.LEFDE7:
+.LSFDE9:
+	.long	.LEFDE9-.LASFDE9
+.LASFDE9:
+	.long	.LASFDE9-.Lframe1
+	.long	.LFB18
+	.long	.LFE18-.LFB18
+	.uleb128 0x0
+	.align 8
+.LEFDE9:
+.LSFDE11:
+	.long	.LEFDE11-.LASFDE11
+.LASFDE11:
+	.long	.LASFDE11-.Lframe1
+	.long	.LFB19
+	.long	.LFE19-.LFB19
+	.uleb128 0x0
+	.align 8
+.LEFDE11:
+.LSFDE13:
+	.long	.LEFDE13-.LASFDE13
+.LASFDE13:
+	.long	.LASFDE13-.Lframe1
+	.long	.LFB21
+	.long	.LFE21-.LFB21
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI0-.LFB21
+	.byte	0xe
+	.uleb128 0x10
+	.byte	0x86
+	.uleb128 0x2
+	.byte	0x4
+	.long	.LCFI1-.LCFI0
+	.byte	0xe
+	.uleb128 0x18
+	.byte	0x4
+	.long	.LCFI2-.LCFI1
+	.byte	0xe
+	.uleb128 0x20
+	.byte	0x83
+	.uleb128 0x3
+	.align 8
+.LEFDE13:
+.LSFDE15:
+	.long	.LEFDE15-.LASFDE15
+.LASFDE15:
+	.long	.LASFDE15-.Lframe1
+	.long	.LFB20
+	.long	.LFE20-.LFB20
+	.uleb128 0x0
+	.byte	0x4
+	.long	.LCFI4-.LFB20
+	.byte	0x86
+	.uleb128 0x3
+	.byte	0x83
+	.uleb128 0x4
+	.byte	0x4
+	.long	.LCFI6-.LCFI4
+	.byte	0xe
+	.uleb128 0x20
+	.byte	0x8c
+	.uleb128 0x2
+	.align 8
+.LEFDE15:
+	.ident	"GCC: (Ubuntu 4.3.2-1ubuntu12) 4.3.2"
+	.section	.note.GNU-stack,"",@progbits
