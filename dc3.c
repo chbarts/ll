@@ -231,15 +231,32 @@ ll *rot(ll * tos)
     return nxt2;
 }
 
+static void help(void)
+{
+    puts("+  add");
+    puts("-  subtract");
+    puts("*  multiply");
+    puts("/  divide");
+    puts("=  print stack depth");
+    puts(".  print top of stack");
+    puts("f  print full stack");
+    puts("s  swap");
+    puts("r  rotate");
+    puts("D  drop");
+    puts("d  duplicate");
+    puts("z  negate");
+    puts("Q  square root");
+    puts("q  quit");
+    puts("?  this help");
+}
+
 int main(void)
 {
     int c, h;
     double d;
     ll *tos = NULL;
-
     while ((c = getchar()) != EOF) {
         ungetc(c, stdin);
-
         if (rdbl(stdin, &d)) {
             tos = push(d, tos);
             continue;
@@ -294,6 +311,9 @@ int main(void)
             return 0;
         case '.':
             print_tos(tos);
+            break;
+        case '?':
+            help();
             break;
         case ' ':
         case '\n':
