@@ -1,3 +1,5 @@
+/* By Chris Barts */
+
 #include <stdlib.h>
 #include "ll3.h"
 
