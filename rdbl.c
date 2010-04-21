@@ -22,8 +22,10 @@ int rdbl(FILE * fd, double *d)
         ungetc(c, fd);
         if (fscanf(fd, "%lg", d) == 1)
             return 1;
-        else
+        else {
+            ungetc(c, fd);
             return 0;
+        }
     } else if ((c == '+') || (c == '-')) {
         if ((h = getc(fd)) == EOF) {
             ungetc(h, fd);
@@ -34,8 +36,11 @@ int rdbl(FILE * fd, double *d)
             ungetc(c, fd);
             if (fscanf(fd, "%lg", d) == 1)
                 return 1;
-            else
+            else {
+                ungetc(h, fd);
+                ungetc(c, fd);
                 return 0;
+            }
         } else {
             ungetc(h, fd);
             ungetc(c, fd);
