@@ -20,12 +20,10 @@ int rdbl(FILE * fd, double *d)
 
     if (isdigit(c) || (c == '.')) {
         ungetc(c, fd);
-        if (scanf("%lg", d) != 1) {
-            ungetc(c, fd);
+        if (fscanf(fd, "%lg", d) == 1)
+            return 1;
+        else
             return 0;
-        }
-
-        return 1;
     } else if ((c == '+') || (c == '-')) {
         if ((h = getc(fd)) == EOF) {
             ungetc(h, fd);
@@ -34,13 +32,10 @@ int rdbl(FILE * fd, double *d)
         } else if (isdigit(h) || (h == '.')) {
             ungetc(h, fd);
             ungetc(c, fd);
-            if (scanf("%lg", d) != 1) {
-                ungetc(h, fd);
-                ungetc(c, fd);
+            if (fscanf(fd, "%lg", d) == 1)
+                return 1;
+            else
                 return 0;
-            }
-
-            return 1;
         } else {
             ungetc(h, fd);
             ungetc(c, fd);
