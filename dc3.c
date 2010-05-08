@@ -5,7 +5,7 @@
 #include "rdbl.h"
 #include "ll2.h"
 
-int n = 0;
+static int n = 0;
 
 ll *push(double num, ll * tos)
 {
