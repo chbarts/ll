@@ -134,7 +134,7 @@ ll *srt(ll * tos)
     double *td;
 
     if (!tos) {
-        fprintf(stderr, "neg: stack too shallow\n");
+        fprintf(stderr, "sqrt: stack too shallow\n");
         return tos;
     }
 
