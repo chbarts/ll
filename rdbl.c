@@ -11,34 +11,36 @@
 
 int rdbl(FILE * fd, double *d)
 {
-    int c, h;
+    int c, h, e;
 
     if ((c = getc(fd)) == EOF) {
         ungetc(c, fd);
         return 0;
     }
 
-    if (isdigit(c) || (c == '.')) {
+    if (isdigit(c)) {
         ungetc(c, fd);
-        if (fscanf(fd, "%lg", d) == 1)
-            return 1;
-        else {
-            ungetc(c, fd);
-            return 0;
-        }
-    } else if ((c == '+') || (c == '-')) {
-        if ((h = getc(fd)) == EOF) {
+        return fscanf(fd, "%lg", d);
+    } else if ((c == '+') || (c == '-') || (c == '.')) {
+        h = getc(fd);
+
+        if (h == EOF) {
             ungetc(h, fd);
             ungetc(c, fd);
             return 0;
-        } else if (isdigit(h) || (h == '.')) {
+        } else if (isdigit(h)) {
             ungetc(h, fd);
             ungetc(c, fd);
-            if (fscanf(fd, "%lg", d) == 1)
-                return 1;
-            else {
-                ungetc(h, fd);
-                ungetc(c, fd);
+            return fscanf(fd, "%lg", d);
+        } else if ((h == '.') && (c != '.')) {
+            e = getc(fd);
+            ungetc(e, fd);
+            ungetc(h, fd);
+            ungetc(c, fd);
+
+            if (isdigit(e)) {
+                return fscanf(fd, "%lg", d);
+            } else {
                 return 0;
             }
         } else {

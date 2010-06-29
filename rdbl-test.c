@@ -20,17 +20,20 @@ int main(int argc, char *argv[])
 
         if (rdbl(fp, &d)) {
             printf("Double: %lg\n", d * 2);
-            continue;
         } else {
             if ((c = getc(fp)) == EOF) {
+                if (fp != stdin)
+                    fclose(fp);
+
                 exit(EXIT_SUCCESS);
             } else {
                 putchar(c);
             }
-
-            continue;
         }
     }
+
+    if (fp != stdin)
+        fclose(fp);
 
     exit(EXIT_SUCCESS);
 }
