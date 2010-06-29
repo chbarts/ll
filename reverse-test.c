@@ -27,8 +27,7 @@ int main(void)
         }
     }
 
-    beg = map(reverse(map(beg, print)), print);
-    free_all_nodes(beg);
+    free_all_nodes(map(reverse(map(beg, print)), print));
 
     return 0;
 }
