@@ -14,13 +14,16 @@ static void *print(int tag, void *data)
 
 int main(void)
 {
-    ll *beg = NULL;
+    ll *beg = NULL, *tmp;
     int i;
 
     for (i = 0; i < 10; i++) {
-        if (!(beg = new_node(0, &(lst[i]), beg))) {
+        if (!(tmp = new_node(0, &(lst[i]), beg))) {
             perror("malloc()");
+            free_all_nodes(beg);
             exit(EXIT_FAILURE);
+        } else {
+            beg = tmp;
         }
     }
 
