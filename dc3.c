@@ -169,9 +169,13 @@ void print_stack(ll * tos)
 
     while (tos) {
         de = (double *) get_data(tos);
-        printf("%lg\n", *de);
+        printf("%lg", *de);
+        if (get_next(tos))
+            printf(", ");
         tos = get_next(tos);
     }
+
+    puts("");
 }
 
 ll *drop(ll * tos)
