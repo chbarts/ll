@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include "jinc.h"
 #include "rdbl.h"
 #include "ll2.h"
 
@@ -150,6 +151,20 @@ ll *srt(ll * tos)
     return tos;
 }
 
+ll *jnc(ll * tos)
+{
+    double *td;
+
+    if (!tos) {
+        fprintf(stderr, "jnc: stack too shallow\n");
+        return tos;
+    }
+
+    td = (double *) get_data(tos);
+    *td = jinc(*td);
+    return tos;
+}
+
 void print_tos(ll * tos)
 {
     double *de;
@@ -249,6 +264,7 @@ static void help(void)
     puts("D  drop");
     puts("d  duplicate");
     puts("z  negate");
+    puts("j  jinc");
     puts("Q  square root");
     puts("q  quit");
     puts("?  this help");
@@ -305,6 +321,9 @@ int main(void)
             break;
         case '=':
             printf("%d\n", n);
+            break;
+        case 'j':
+            tos = jnc(tos);
             break;
         case 'Q':
             tos = srt(tos);
